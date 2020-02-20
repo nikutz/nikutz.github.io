@@ -7,7 +7,7 @@ html, body {
 
 html {
   font-size: 10px;
-  background-color: #5742B8;
+  background-color: #add8e6;
 }
 
 body {
@@ -30,8 +30,7 @@ h1 {
 h2, h3 {
   font-family: 'Akronim', cursive;
   color: #2a2a2a;
-  font-size: 50px;
-  font-stretch: extra-expanded;
+  font-size: 100px;
   font-weight: 700;
 }
 
@@ -48,8 +47,9 @@ h1 {
 }
 
 h2 {
-  font-size: xx-large;
+  font-size: 53px;
   text-align: center;
+  margin: 5px;
 }
 
 h3 {
@@ -81,6 +81,7 @@ main, header, nav, article, aside, footer, section {
 h1 {
   flex: 5;
   text-transform: uppercase;
+  font-size: 50px;
 }
 
 .header img {
@@ -170,4 +171,3 @@ div {
 img{
   size: 550%;
 }
-
