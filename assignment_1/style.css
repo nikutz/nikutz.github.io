@@ -51,11 +51,12 @@ li {
 /* Header Layout */
 
 .header h1 {
-    font-size: 35px;
+    font-size: 50px;
     font-weight: bolder;
     order: 1;
     text-align: center;
     margin: 10px;
+    text-shadow: 1px 1px;
 }
 
 .header img {
@@ -139,7 +140,7 @@ li {
 }
 
 .jobdesc {
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .resp {
