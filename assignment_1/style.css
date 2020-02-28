@@ -22,7 +22,8 @@ body {
     justify-content: space-evenly;
     flex-wrap: wrap;
     margin: 0px;
-    padding: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 ul,h1 {
