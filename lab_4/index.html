@@ -29,6 +29,43 @@
         const content = document.querySelector(".content");
         content.innerHTML = "Hello world";
       }
+      
+
+
+      // This is the header changes 
+      const header = document.querySelector(".header");
+      header.innerHTML = "Nikolas Utzschneider's Lab 4 ";
+
+      //This is title changes
+      const title = document.querySelector('title');
+      title.innerHTML = "Nikolas Utzschneider's Lab 4 ";
+
+      
+      //This is paragraph 1 changes 
+      const content = document.querySelector(".content");
+      content.innerHTML = '<p class "p_one"> My name has 19 characters </p>';
+
+      
+      //This is paragraph 2 changes
+      let first = "Nikolas";
+      let last = "Utzschneider";
+      let three = last.substr(last.length - 3);
+
+      let p_two = document.createElement("p");
+      p_two.className = "p_two";
+      content.appendChild(p_two)
+      p_two.innerHTML = "The third character in my name is K" + "<br>" + three;
+
+      let fl = first.length;
+      let ll = last.length;
+      let total_length = document.createTextNode(fl+ll);
+      let heads = document.querySelector('.header');
+      heads.appendChild(total_length);
+
+
+
+
+
     </script>
   </body>
 </html>
