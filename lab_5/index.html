@@ -19,6 +19,7 @@
     </div>
   </div>
   <script>
+
     /* N.B. - For your lab, use the variable "countries" now available on the window space */
     const countries = [
       { "name": "Afghanistan", "code": "AF" },
@@ -287,18 +288,44 @@
     //https://gomakethings.com/two-more-ways-to-create-html-from-an-array-of-data-with-vanilla-js/
     //This adds the the content of the array to the list elements.  
 
-    selected.forEach(function (selected) {
+    selected.forEach(function (random) {
       let li = document.createElement('li');
-      li.textContent = selected;
-      array_list.push(list);
+      let span1 = document.createElement('span')
+      let span2 = document.createElement('span')
+      let space = document.createTextNode(' ')
+
+      span1.innerHTML = random.code;
+      span1.style.fontWeight = 'bold';
+      span2.style.fontWeight = 'normal';
+      span2.innerHTML = random.name;
+      
+      li.appendChild(span1);
+      li.append(space);
+      li.appendChild(span2);
       list.appendChild(li);
+
     });
 
-    
-    
+    console.log(selected);
 
-    console.log(list);
-    console.log(array_list);
+    let diff = function (countries, selected) {
+      if (!selected || Object.prototype.toString.call(selected) !== '[object Object]') {
+        return countries;
+      }
+
+      let diffs = {};
+      var key;
+
+      for (key in countries) {
+        if (countries.hasOwnProperty(key)) {
+          compare(obj1[key], obj2[key], key);
+        }
+      }
+    };
+
+  
+
+
     
 
 
