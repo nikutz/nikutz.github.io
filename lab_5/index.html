@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-  <title>Test JSON page</title>
+  <title>Nik Utzschneider's List of countries</title>
   <link rel="stylesheet" type="text/css" href="./styles.css">
 </head>
 
 <body>
   <div class="container">
     <div class="wrapper">
-      <div class="header">Test JSON page</div>
+      <div class="header">Nik Utzschneider's List of countries</div>
       <!-- <button class="button" onclick="loadData()">Load Some JSON</button> -->
       <button class="activate">Click me to replace list
         entries</button>
@@ -266,6 +266,78 @@
       { "name": "Zimbabwe", "code": "ZW" }
     ]
     console.log("List of countries in the world", countries);
+
+    
+    //Creates ordered list and renames it to countries.
+    const content = document.querySelector(".content"); //Declare content 
+    let list = document.createElement('ol');
+    content.appendChild(list);
+    let array_list = [];
+    list.className = 'countries'
+    
+    
+    //this line of code was taken from this link on stack overflow
+    //https://stackoverflow.com/questions/19269545/how-to-get-n-no-elements-randomly-from-an-array
+    n = 25
+    let random = countries.sort(function(){return .5 - Math.random()});
+    let selected = random.slice(0, n);
+
+  
+    
+    //https://gomakethings.com/two-more-ways-to-create-html-from-an-array-of-data-with-vanilla-js/
+    //This adds the the content of the array to the list elements.  
+
+    selected.forEach(function (selected) {
+      let li = document.createElement('li');
+      li.textContent = selected;
+      array_list.push(list);
+      list.appendChild(li);
+    });
+
+    
+    
+
+    console.log(list);
+    console.log(array_list);
+    
+
+
+
+
+    /*
+    //This marks the start of my craetion of list and its population
+    const content = document.querySelector(".content"); //Declare content 
+    
+  
+    //https://stackoverflow.com/questions/11128700/create-a-ul-and-fill-it-based-on-a-passed-array
+    function makeOl(array) {    
+      
+    var node = document.createElement("ol"); //Creates the ordered list 
+    node.className = "countries" //Renames the ordered list
+
+    for (var i = 0; i < array.length; i++) { //iterates through the list
+      
+      var item = document.createElement("li");  //creates a list element
+      item.appendChild(document.createTextNode(array[i])); //adds the contents of the list element
+      node.appendChild(item); //adds that list element to the list
+    }
+  }
+
+  makeOl(selected);
+
+    //let list_node = document.createElement("li"); //This creates the list individual element
+    //let text_node = selected.forEach(Element => console.log(element));
+
+    //let text_node = document.createTextNode("Test test test"); //This is a test text object 
+
+    //list_node.appendChild(text_node); //This appends text to to li element 
+    //node.appendChild(list_node); //This appends li to ul
+    //content.appendChild(node); //Appends ul to the content class
+    */
+    
+
+
+    
   </script>
 </body>
 
