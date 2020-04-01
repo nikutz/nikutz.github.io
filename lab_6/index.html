@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Forms Lab</title>
+    <link rel="stylesheet" type="text/css" href="./form_styles.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        
+          <h1>HTML Forms Lab</h1>
+        
+        <form
+          action="https://nameless-thicket-21836.herokuapp.com/lab"
+          method="post"
+        >
+          <ul>
+            <li>
+              <label for="name">Name</label>
+            </li>
+            <li>
+              <input type="text" id="name" name="user_name" maxlength="140" />
+            </li>
+            <li>
+              <label for="text">Interests</label>
+            </li>
+            <li>
+              <textarea
+                id="interests" name="user_interest"
+                rows="5" columns="33" 
+                >Please tell me all about your interests!</textarea>
+            </li>
+            
+            <li class="button">
+              <button type="submit">Subtmit!</button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
