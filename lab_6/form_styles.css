@@ -1,0 +1,43 @@
+form {
+    /* Center the form on the page */
+    margin: 0 auto;
+    width: 400px;
+    flex: auto;
+  }
+
+label {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: 400px;
+    height: 110px;
+}
+
+input{
+    
+}
+
+ul {
+    list-style: none;
+}
+
+h1 {
+    margin: 0 auto;
+    width: 320px;
+    flex: auto;
+}
+
+button {
+    margin-top: 10px;
+    background-color: #FF8C00;
+    color: white;
+    width: 80px;
+    height: 35px;
+}
+
+html{
+    background-color: #FAF0E6;
+}
