@@ -41,3 +41,17 @@ button {
 html{
     background-color: #FAF0E6;
 }
+
+h1{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.name { 
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+}
+
+.text {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+}
