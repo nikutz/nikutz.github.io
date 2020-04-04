@@ -4,39 +4,49 @@ const thumbBar = document.querySelector('.thumb-bar');
 const btn = document.querySelector('button');
 const overlay = document.querySelector('.overlay');
 
-/* Looping through images */
+//Looping through images 
 
-for (let i = 1; i <= 5; i++) {
-  const newImage = document.createElement("img");
-  newImage.setAttribute('src', 'pictures/pic' + i + 'jpg');
+const img_array = [
+  "images/pic1.jpg",
+  "images/pic2.jpg",
+  "images/pic3.jpg",
+  "images/pic4.jpg",
+  "images/pic5.jpg"
+];
+
+//This foreach funciton works, I just can get button to go
+
+img_array.forEach(function(item) {
+  let newImage = document.createElement("img");
+  newImage.setAttribute("src", item);
   thumbBar.appendChild(newImage);
-  newImage.onclick = function(p) {
-    displayedImage.src = p.target.src;
-  }
+
+  newImage.addEventListener("click", setImage);
+});
+
+function setImage(e) {
+  // get the file path of the thumbnail picture
+  let imgPath = e.target.getAttribute("src");
+
+  // set thumbnail as the picture displayed
+  displayedImage.setAttribute("src", imgPath);
 }
+
+
 
 /* Wiring up the Darken/Lighten button */
+
 btn.onclick = function() {
-    const btnClass = btn.getAttribute('class');
-    if (btnClass === 'dark') {
-        btn.setAttribute('class','ligth');
-        btn.textContent = 'Lighten';
-        overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
-    } else {
-        btn.setAttribute('class','dark');
-        btn.textContent = 'Darken';
-        overlay.style.backgroundColor = 'rgba(0,0,0,0)';
-    }
-}
-
-
-//This is kind of a useless test 
-let img_array = ['pic1.jpg','pic2.jpg','pic3.jpg','pic4.jpg','pic5.jpg'];
-//img_array.forEach(element => console.log(element)); {
-  const newImage = document.createElement("img");
-  newImage.setAttribute('src', 'images/' + img_array.forEach(element => console.log(element)));
-  thumbBar.appendChild(newImage);
-  newImage.onclick = function(p) {
-      displayedImage.src = p.target.src;
+  if(btn.getAttribute("class") == "dark")
+  {
+    btn.setAttribute("class", "light");
+    btn.textContent = "lighten";
+    overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
   }
-//}
+  else
+  {
+    btn.setAttribute("class", "dark");
+    btn.textContent = 'darken';
+    overlay.style.backgroundColor = "rgba(0,0,0,0)";
+  }
+}
