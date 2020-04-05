@@ -46,23 +46,27 @@
           }).addTo(mymap);
 
           marker1.bindPopup("Eppley Recreation Center").openPopup();
-/*
-          const obj = fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json')
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
-              console.log(data);
-            });*/
 
           let obj = fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json')
             .then(function(response) {
               return response.json();
             })
-            .then(function(data) {
-              let test = Array(data[10].geocoded_column_1.coordinates);
-              console.log(test);
+            .then(function(response) {
+              lat1 = (response[50].geocoded_column_1.coordinates[0]);
+              lon1 = (response[50].geocoded_column_1.coordinates[1]);
+              const marker2 = L.marker([lon1, lat1],{}).addTo(mymap);
+
+              lat2 = (response[51].geocoded_column_1.coordinates[0]);
+              lon2 = (response[51].geocoded_column_1.coordinates[1]);
+              const marker3 = L.marker([lon2, lat2],{}).addTo(mymap);
+
+              lat3 = (response[52].geocoded_column_1.coordinates[0]);
+              lon3 = (response[52].geocoded_column_1.coordinates[1]);
+              const marker4 = L.marker([lon3, lat3],{}).addTo(mymap);
             });
+            
+
+        
 
 
 
