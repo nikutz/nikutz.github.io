@@ -31,7 +31,7 @@ h3 {
 
 .wrapper {
   min-height: 100%;
-  width: 100%;
+  width: 960px;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -40,11 +40,14 @@ h3 {
   background: #fefefe;
   border: 1px dashed #ccc;
   margin: 25px;
+}
 
+#charContainer {
+  height: 400px;
 }
 
 .wrapper div {
-  border-radius: 14px;
+  border-radius: 15px;
 }
 
 .header {
@@ -70,9 +73,10 @@ h3 {
   border: 2px dotted #444;
   align-self: flex-start;
   width: 85%;
-  padding: 10px;
+  padding: 20px;
   overflow-wrap: break-word;
   margin: 25px 50px;
+  height: 385px !important;
 }
 
 .activate {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Charts Lab</title>
+    <title>Utz Charts Lab</title>
     <link rel="stylesheet" type="text/css" href="./styles.css" />
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   </head>
@@ -9,12 +9,10 @@
     <div class="container">
       <div class="wrapper">
         <div class="header">Frontend Libraries: Charts Lab</div>
-        <div class="content">
-          <div id ="chartContainer">
+        <div class="content" id ="chartContainer" style="height: 350px;">
+          
             <canvas id="mycanvas"></canvas>
-          </div>
-          When your lab is done, this should be replaced with a useful chart
-          full of food data.
+          
         </div>
         <div class="footer">Let's eat out in the future!</div>
       </div>
@@ -65,16 +63,19 @@
           const chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
             title: {
-              text: "This is a test title",
+              text: "Doughnut Chart showing most common public food types",
               horizontalAlign: "left"
             },
+            colorSet: "colorSet2",
+            width: 800,
+            height: 400,
             data: [{              
                 type: "doughnut",
-                startAngle: 60,
-                indexlabelFontSize: 17,
+                startAngle: 10,
+                indexlabelFontSize: 15,
                 indexLabel: "{label} - #percent%",
                 toolTipContent: "<b>{label}:</b> {y} (#percent%)",
-                dataPoints: canvasData
+                dataPoints: canvasData,               
               },
             ],
           });
