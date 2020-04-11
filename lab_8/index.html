@@ -10,6 +10,9 @@
       <div class="wrapper">
         <div class="header">Frontend Libraries: Charts Lab</div>
         <div class="content">
+          <div id ="chartContainer">
+            <canvas id="mycanvas"></canvas>
+          </div>
           When your lab is done, this should be replaced with a useful chart
           full of food data.
         </div>
@@ -44,6 +47,7 @@
         })
 
         //This essentially logs what was done above, and creates an object called 'new data' for it to stay in
+        //then takes it and makes it the actual graph using canvasJS api 
         .then((data) => {
           console.log("new data", data);
 
@@ -62,23 +66,20 @@
             animationEnabled: true,
             title: {
               text: "This is a test title",
+              horizontalAlign: "left"
             },
-            data: [
-              {
+            data: [{              
                 type: "doughnut",
                 startAngle: 60,
-                IndexlabelFontSize: 17,
+                indexlabelFontSize: 17,
                 indexLabel: "{label} - #percent%",
                 toolTipContent: "<b>{label}:</b> {y} (#percent%)",
-                datapoints: canvasData,
+                dataPoints: canvasData
               },
             ],
           });
-        chart.render();
-      });
-      
-    
-    
+          chart.render();
+        });
     </script>
   </body>
 </html>
