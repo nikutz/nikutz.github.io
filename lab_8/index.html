@@ -21,34 +21,64 @@
         .then((response) => response.json()) //this is implicit return.
         .then((data) => {
           console.log(data);
-          const clearEmptyData = data.filter((f) => f.geocoded_column_1);//This filters out results that don't have coordinates
+          const clearEmptyData = data.filter((f) => f.geocoded_column_1); //This filters out results that don't have coordinates
           const refined = data.map((m) => ({
             //********this essentially MAPS down through array and looks for cat, name, and geo location
             category: m.category,
             name: m.name,
             //latLong: m.geocoded_column_1.coordinates
-            // code above ^ essentially adds geocoded coordinates to the "refined" array 
+            // code above ^ essentially adds geocoded coordinates to the "refined" array
           }));
           return refined;
-        }) 
+        })
 
-        //This is essentially creating an array where it adds each category to a number counter.  REDUCE is big. 
-        .then((data) => {        
-        return data.reduce((result, current) => {
-          if (!result[current.category]) {
-            result[current.category] = [];
-          }
+        //This is essentially creating an array where it adds each category to a number counter.  REDUCE is big.
+        .then((data) => {
+          return data.reduce((result, current) => {
+            if (!result[current.category]) {
+              result[current.category] = [];
+            }
             result[current.category].push(current);
             return result;
           }, {}); //<- this is important.  It sets the 'result' to an object.  Which is what I need for this data structure
         })
-        
+
         //This essentially logs what was done above, and creates an object called 'new data' for it to stay in
-        .then((data) =>{
-          console.log('new data', data);
+        .then((data) => {
+          console.log("new data", data);
+
+          const canvasData = Object.entries(data).map((current) => {
+            console.log(current);
+            return {
+              y: current[1].length,
+              label: current[0],
+            };
+          });
+          return canvasData;
         })
-
-
+        .then((canvasData) => {
+          console.log("canvas data", canvasData);
+          const chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            title: {
+              text: "This is a test title",
+            },
+            data: [
+              {
+                type: "doughnut",
+                startAngle: 60,
+                IndexlabelFontSize: 17,
+                indexLabel: "{label} - #percent%",
+                toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+                datapoints: canvasData,
+              },
+            ],
+          });
+        chart.render();
+      });
+      
+    
+    
     </script>
   </body>
 </html>
