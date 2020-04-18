@@ -1,11 +1,10 @@
 // These are our required libraries to make the server work.
 // We're including a server-side version of Fetch to build on your client-side work
-const express = require('express');
-const fetch = require('node-fetch');
+const express = require("express");
+const fetch = require("node-fetch");
 
 // Here we instantiate the server we're going to turn on
 const app = express();
-
 
 // Servers are often subject to the whims of their environment.
 // Here, if our server has a PORT defined in its environment, it will use that.
@@ -17,31 +16,74 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // And the ability to serve some files publicly, like our HTML.
-app.use(express.static('public'));
-
-
+app.use(express.static("public"));
 
 function processDataForFrontEnd(req, res) {
-  const baseURL = "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"; // Enter the URL for the data you would like to retrieve here
+  const baseURL =
+    "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json"; // Enter the URL for the data you would like to retrieve here
 
   // Your Fetch API call starts here
+
   // Note that at no point do you "return" anything from this function -
   // it instead handles returning data to your front end at line 34.
-    fetch(baseURL)
-      .then((r) => r.json())
-      .then((data) => {
-        console.log(data);
-        res.send({ data: data }); // here's where we return data to the front end
-      })
-      .catch((err) => {
-        console.log(err);
-        res.redirect('/error');
+  fetch(baseURL)
+
+    //****THIS IS MY CODE FROM LAB 8*****
+    .then((response) => response.json()) //this is implicit return.
+    .then((data) => {
+      console.log(data);
+      const clearEmptyData = data.filter((f) => f.geocoded_column_1); //This filters out results that don't have coordinates
+      const refined = data.map((m) => ({
+        //********this essentially MAPS down through array and looks for cat, name, and geo location
+        category: m.category,
+        name: m.name,
+        //latLong: m.geocoded_column_1.coordinates
+        // code above ^ essentially adds geocoded coordinates to the "refined" array
+      }));
+      return refined;
+    })
+
+    //This is essentially creating an array where it adds each category to a number counter.  REDUCE is big.
+    .then((data) => {
+      return data.reduce((result, current) => {
+        if (!result[current.category]) {
+          result[current.category] = [];
+        }
+        result[current.category].push(current);
+        return result;
+      }, {}); //<- this is important.  It sets the 'result' to an object.  Which is what I need for this data structure
+    })
+
+    //This essentially logs what was done above, and creates an object called 'new data' for it to stay in
+    .then((data) => {
+      console.log("new data", data);
+
+      const canvasData = Object.entries(data).map((current) => {
+        //console.log(current);
+        return {
+          y: current[1].length,
+          label: current[0],
+        };
       });
+      return canvasData;
+    })
+
+    //****THIS IS CODE FROM LAB 9*****
+    .then((canvasData) => {
+      console.log(canvasData);
+      res.send({ canvasData: canvasData }); // here's where we return data to the front end
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect("/error");
+    });
 }
 
 // This is our first route on our server.
 // To access it, we can use a "GET" request on the front end
 // by typing in: localhost:3000/api or 127.0.0.1:3000/api
-app.get('/api', (req, res) => {processDataForFrontEnd(req, res)});
+app.get("/api", (req, res) => {
+  processDataForFrontEnd(req, res);
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
