@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Nik Utz Lab Page</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  </head>
 
-<head>
-  <title>Nik Utz Lab Page</title>
-  <link rel="stylesheet" type="text/css" href="./styles.css">
-  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-</head>
-
-<body>
-  <div class="container">
-    <div class="wrapper">
-      <div class="header">Nik Utz Lab Page</div>
-      <div class="content">
-        <div id ="chartContainer" style="height: 350px; width: 960px;"></div>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="header">Nik Utz Lab Page</div>
+        <div class="content">
+          <div id="chartContainer" style="height: 350px; width: 100%;"></div>
+        </div>
+        <div class="footer"></div>
       </div>
-      <div class="footer"></div>
     </div>
-  </div>
-  <script>
-    fetch('/api') // Rather than fetching from PG County, we're going to fetch from our own server.
-      .then(res => res.json())
-      .then(res => {
-        // Here's where your chart code should go.
-        const chart = new CanvasJS.Chart("chartContainer", {
+    <script>
+      fetch("/api") // Rather than fetching from PG County, we're going to fetch from our own server.
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          // Here's where your chart code should go.
+          const chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
             title: {
               text: "Doughnut Chart showing most common public food types",
-              horizontalAlign: "left"
+              horizontalAlign: "left",
             },
             colorSet: "colorSet2",
-            data: [{              
+            data: [
+              {
                 type: "doughnut",
                 startAngle: 10,
                 indexlabelFontSize: 15,
                 indexLabel: "{label} - #percent%",
                 toolTipContent: "<b>{label}:</b> {y} (#percent%)",
-                dataPoints: res,               
+                dataPoints: res.canvasData,
               },
             ],
           });
           chart.render();
-      });
-  </script>
-</body>
+        });
+    </script>
+  </body>
 
 </html>

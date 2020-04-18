@@ -27,11 +27,10 @@ function processDataForFrontEnd(req, res) {
   // Note that at no point do you "return" anything from this function -
   // it instead handles returning data to your front end at line 34.
   fetch(baseURL)
-
     //****THIS IS MY CODE FROM LAB 8*****
     .then((response) => response.json()) //this is implicit return.
     .then((data) => {
-      console.log(data);
+      //console.log(data);
       const clearEmptyData = data.filter((f) => f.geocoded_column_1); //This filters out results that don't have coordinates
       const refined = data.map((m) => ({
         //********this essentially MAPS down through array and looks for cat, name, and geo location
@@ -56,7 +55,7 @@ function processDataForFrontEnd(req, res) {
 
     //This essentially logs what was done above, and creates an object called 'new data' for it to stay in
     .then((data) => {
-      console.log("new data", data);
+      //console.log("new data", data);
 
       const canvasData = Object.entries(data).map((current) => {
         //console.log(current);
@@ -71,7 +70,7 @@ function processDataForFrontEnd(req, res) {
     //****THIS IS CODE FROM LAB 9*****
     .then((canvasData) => {
       console.log(canvasData);
-      res.send({ canvasData: canvasData }); // here's where we return data to the front end
+      res.send({ canvasData}); // here's where we return data to the front end
     })
     .catch((err) => {
       console.log(err);
